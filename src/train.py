@@ -4,8 +4,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 import joblib
 
-df=pd.read_csv("data/raw/SMSSpamCollection",sep="\t",header=None,names=["label","message"]")
-X=df["message"]
+df=pd.read_csv("data/processed/processed_data.csv")
+X=df["clean_message"]
 y=df["label"]
 df=df.drop_duplicates()
 X_train,X_temp,y_train,y_temp=train_test_split(X,y,test_size=0.36,random_state=42)
