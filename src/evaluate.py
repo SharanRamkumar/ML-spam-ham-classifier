@@ -6,9 +6,9 @@ from sklearn.metrics import confusion_matrix, classification_report
 vectorizer = joblib.load("vectorizer.pkl")
 model = joblib.load("spam_classifier.pkl")
 
-df = pd.read_csv("data/processed/processed_data.csv")
+df = pd.read_csv("data/raw/SMSSpamCollection",sep="\t",header=None,names=["label","message"]")
 
-X = df["clean_message"]
+X = df["message"]
 y = df["label"]
 
 X_train, X_temp, y_train, y_temp = train_test_split(X,y,test_size=0.36,random_state=42,stratify=y)
