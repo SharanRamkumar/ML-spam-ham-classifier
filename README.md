@@ -1,4 +1,4 @@
-# 📩 SMS Spam Classifier
+# 📩 ML-Spam-Ham Classifier
 
 ![Python](https://img.shields.io/badge/Python-3.14-blue?logo=python)
 ![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-ML-orange?logo=scikit-learn)
