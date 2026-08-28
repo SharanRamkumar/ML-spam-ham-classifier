@@ -264,10 +264,10 @@ Actual Spam      2     129
 
 ### Key Metrics
 
-- **Accuracy:** ~97%
-- **Spam Precision:** 91%
-- **Spam Recall:** 88%
-- **Spam F1-score:** 89%
+- **Accuracy:** ~99%
+- **Spam Precision:** 96%
+- **Spam Recall:** 98%
+- **Spam F1-score:** 97%
 
 ---
 
