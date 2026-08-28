@@ -374,6 +374,12 @@ python src/predict_mail.py
 
 ---
 
+## 🧪 Example Predictions
+
+See [examples.md](examples.md) for sample predictions produced by the trained model.
+
+---
+
 # 📁 Project Structure
 
 ```text
@@ -518,3 +524,5 @@ Through this project, I gained practical experience with:
 This project demonstrates a complete classical machine learning workflow for text classification, from raw data preprocessing to model training, evaluation, interpretation, and prediction on unseen messages.
 
 The final Logistic Regression classifier achieved approximately **99% accuracy** on the held-out test set, with an **97% F1-score for the spam class** using a validation-selected threshold of 0.25.
+
+---
