@@ -250,17 +250,17 @@ The final model was evaluated on the held-out test set using the selected thresh
                 Predicted
                 Ham    Spam
 
-Actual Ham      891     12
-Actual Spam      16    115
+Actual Ham      897     6
+Actual Spam      2     129
 ```
 
 ### Classification Report
 
 | Class | Precision | Recall | F1-score |
 |---|---:|---:|---:|
-| Ham | 0.98 | 0.99 | 0.98 |
-| Spam | 0.91 | 0.88 | 0.89 |
-| **Overall Accuracy** | | | **0.97** |
+| Ham | 1.00 | 0.99 | 1.00 |
+| Spam | 0.96 | 0.98 | 0.97 |
+| **Overall Accuracy** | | | **0.99** |
 
 ### Key Metrics
 
