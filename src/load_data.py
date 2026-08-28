@@ -1,54 +1,111 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
+import re
+from pathlib import Path
 
 
-# Load dataset
-df = pd.read_csv("data/processed/processed_data.csv)
+# File paths
+RAW_PATH = Path("data/raw/SMSSpamCollection")
+PROCESSED_PATH = Path("data/processed/processed_data.csv")
+
+
+# Load raw dataset
+df = pd.read_csv(
+    RAW_PATH,
+    sep="\t",
+    header=None,
+    names=["label", "message"]
+)
 
 print("Original dataset shape:", df.shape)
 
-# Check class distribution
-print("\nClass distribution:")
-print(df["label"].value_counts())
 
-# Check missing values
-print("\nMissing values:")
-print(df.isnull().sum())
+# Remove missing values
+df = df.dropna(subset=["label", "message"])
 
-# Check duplicates
-print("\nDuplicate rows:", df.duplicated().sum())
 
 # Remove duplicate messages
-df = df.drop_duplicates()
+df = df.drop_duplicates(subset=["message"])
 
-print("\nRows after removing duplicates:", len(df))
-print("Duplicates remaining:", df.duplicated().sum())
+'''
+# Convert labels to numbers
+df["label"] = df["label"].map({
+    "ham": 0,
+    "spam": 1
+})
 
 
-# Separate features and labels
-X = df["message"]
-y = df["label"]
+# Remove unexpected labels
+df = df.dropna(subset=["label"])
+df["label"] = df["label"].astype(int)
+'''
+
+# Text cleaning function
+def clean_text(text):
+
+    # Convert to lowercase
+    text = text.lower()
+
+    # Replace URLs
+    text = re.sub(
+        r"https?://\S+|www\.\S+",
+        " URL ",
+        text
+    )
+
+    # Replace email addresses
+    text = re.sub(
+        r"\b[\w\.-]+@[\w\.-]+\.\w+\b",
+        " EMAIL ",
+        text
+    )
+    
+    # Keep letters, numbers, whitespace, and currency symbols
+    text = re.sub(r"[^a-z0-9\s£$€₹]", " ", text)
+    # Normalize whitespace
+    text = re.sub(r"\s+", " ", text)
+
+    return text.strip()
 
 
-# Split into train and test sets
-X_temp, X_test, y_temp, y_test = train_test_split(
-    X,
-    y,
-    test_size=0.2,
-    random_state=42,
-    stratify=y
+# Create cleaned message
+df["clean_message"] = df["message"].apply(clean_text)
+df = df.dropna(subset=["clean_message"])
+# Replace missing values with empty strings
+df["clean_message"] = df["clean_message"].fillna("")
+
+# Remove messages that contain no letters
+df = df[df["clean_message"].str.strip() != ""]
+
+
+# Keep only the three fields we need
+df = df[
+    ["label",  "clean_message"]
+]
+
+
+# Create processed directory if needed
+PROCESSED_PATH.parent.mkdir(
+    parents=True,
+    exist_ok=True
 )
 
-# Split remaining data into training and validation sets
-X_train, X_val, y_train, y_val = train_test_split(
-    X_temp,
-    y_temp,
-    test_size=0.2,
-    random_state=42,
-    stratify=y_temp
+
+# Save processed dataset
+df.to_csv(
+    PROCESSED_PATH,
+    index=False
 )
 
-print("\nDataset split:")
-print("Training samples:", len(X_train))
-print("Validation samples:", len(X_val))
-print("Testing samples:", len(X_test))
+
+# Display results
+print("\nProcessed dataset shape:", df.shape)
+
+print("\nColumns:")
+print(df.columns.tolist())
+
+print("\nSample:")
+print(df.head())
+
+print(
+    f"\nProcessed data saved to: {PROCESSED_PATH}"
+)
