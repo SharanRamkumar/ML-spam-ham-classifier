@@ -12,18 +12,18 @@ The project covers the complete classical machine learning workflow, including d
 
 ---
 
-## 🎯 Project Objective
+##  Project Objective
 
 The goal of this project is to build a binary text classification model capable of determining whether an SMS message is:
 
-- 🟢 **Ham** — legitimate message
-- 🔴 **Spam** — unwanted or fraudulent message
+-  **Ham** — legitimate message
+-  **Spam** — unwanted or fraudulent message
 
 The project was also developed to understand the mathematical and practical foundations behind a traditional machine learning classification pipeline.
 
 ---
 
-## 🧠 Machine Learning Pipeline
+##  Machine Learning Pipeline
 
 ```text
 Raw SMS Dataset
@@ -51,7 +51,7 @@ Prediction on New Messages
 
 ---
 
-## 📊 Dataset
+##  Dataset
 
 The project uses the **SMS Spam Collection** dataset.
 
@@ -85,7 +85,7 @@ The split was stratified to preserve the proportion of ham and spam messages.
 
 ---
 
-# 🧹 Data Preprocessing
+#  Data Preprocessing
 
 Before training the model, duplicate messages were removed to reduce the possibility of the same or highly similar examples appearing multiple times in the dataset.
 
@@ -102,7 +102,7 @@ The test set was kept separate for final evaluation.
 
 ---
 
-# 🔢 TF-IDF Feature Extraction
+#  TF-IDF Feature Extraction
 
 Machine learning algorithms cannot directly process raw text.
 
@@ -143,7 +143,7 @@ The vectorizer was fitted **only on the training data** to prevent information f
 
 ---
 
-# 🤖 Logistic Regression
+#  Logistic Regression
 
 The numerical TF-IDF vectors were used as input to a **Logistic Regression** classifier.
 
@@ -177,7 +177,7 @@ means the model estimates an 82% probability that the message is spam.
 
 ---
 
-# 📉 Loss Function
+#  Loss Function
 
 Logistic Regression is trained using **log loss / binary cross-entropy**.
 
@@ -214,7 +214,7 @@ The training process adjusts the model's weights to minimize this loss.
 
 ---
 
-# 🎚️ Probability Threshold
+#  Probability Threshold
 
 Instead of automatically using a 0.50 threshold, different thresholds were evaluated using the validation set.
 
@@ -240,7 +240,7 @@ A threshold of **0.25** was selected because it provided the best F1 score among
 
 ---
 
-# 📈 Final Model Performance
+#  Final Model Performance
 
 The final model was evaluated on the held-out test set using the selected threshold of 0.25.
 
@@ -271,7 +271,7 @@ Actual Spam      2     129
 
 ---
 
-# 🔍 Error Analysis
+#  Error Analysis
 
 The model's incorrect predictions were analyzed rather than relying solely on accuracy.
 
@@ -304,7 +304,7 @@ The model therefore learned statistical associations between vocabulary and spam
 
 ---
 
-# 🔬 Model Interpretation
+#  Model Interpretation
 
 One advantage of Logistic Regression is that its learned coefficients can be inspected.
 
@@ -333,7 +333,7 @@ This makes Logistic Regression relatively interpretable compared with many more 
 
 ---
 
-# 🧪 Prediction on New Messages
+#  Prediction on New Messages
 
 The trained model and TF-IDF vectorizer were saved using `joblib`.
 
@@ -374,13 +374,13 @@ python src/predict_mail.py
 
 ---
 
-## 🧪 Example Predictions
+##  Example Predictions
 
 See [examples.md](examples.md) for sample predictions produced by the trained model.
 
 ---
 
-# 📁 Project Structure
+#  Project Structure
 
 ```text
 sms-spam-classifier/
@@ -406,7 +406,7 @@ sms-spam-classifier/
 
 ---
 
-# 🛠️ Technologies Used
+# Technologies Used
 
 - **Python**
 - **Pandas**
@@ -418,7 +418,7 @@ sms-spam-classifier/
 
 ---
 
-# 🚀 How to Run
+#  How to Run
 
 ## 1. Clone the repository
 
@@ -467,7 +467,7 @@ python src/predict_mail.py
 
 ---
 
-# ⚠️ Limitations
+#  Limitations
 
 This project uses a classical machine learning approach and has several limitations:
 
@@ -480,7 +480,7 @@ This project uses a classical machine learning approach and has several limitati
 
 ---
 
-# 🔮 Future Improvements
+#  Future Improvements
 
 Possible future improvements include:
 
@@ -496,7 +496,7 @@ Possible future improvements include:
 
 ---
 
-# 🎓 Learning Outcomes
+#  Learning Outcomes
 
 Through this project, I gained practical experience with:
 
@@ -519,7 +519,7 @@ Through this project, I gained practical experience with:
 
 ---
 
-## 📌 Conclusion
+##  Conclusion
 
 This project demonstrates a complete classical machine learning workflow for text classification, from raw data preprocessing to model training, evaluation, interpretation, and prediction on unseen messages.
 
